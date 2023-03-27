@@ -1,0 +1,115 @@
+//out:../css/
+@import './base';
+@import './normalize';
+
+@rootSize:37.5rem;
+body{
+  background-color: #2051cb; 
+  padding: 0 (20 / @rootSize);
+}
+
+// 主体内容
+.main{
+  width:(305 / @rootSize);
+  margin: (40 / @rootSize) 0;
+  background-color:#ffffff ;
+  border-radius: (10 / @rootSize);
+  padding:(24 / @rootSize) (16 / @rootSize) ;
+
+  // 标题
+  .top{
+    display: flex;
+    h4{
+      font-size: (16 / @rootSize);
+      color: #3171f4;
+    }
+    p{
+      font-size: (14 / @rootSize);
+      color: #9fa2a4;
+    }
+  }
+
+  // 进度条
+  progress{
+    width: (305 / @rootSize);
+    height: (15 / @rootSize);
+  }
+
+  //具体问题
+  .question{
+    margin: (30 / @rootSize) 0;
+    display: flex;
+    .label{
+      width: (40 / @rootSize);
+      height: (25 / @rootSize);
+      border-radius: (8 / @rootSize);
+      background-color: #fdf1d1;
+      font-size: (14 / @rootSize);
+      color: #8c673b;
+      text-align: center;
+      line-height: (25 / @rootSize);
+    }
+    h3{
+      width:(260/ @rootSize) ;
+      margin-left: (10 / @rootSize);
+      font-size: (18 / @rootSize);
+      color: #000000;
+      line-height: (25 / @rootSize);
+      // 文字换行
+      word-wrap: break-word
+    }
+  }
+  
+  // 选项
+  .answer{
+    li{
+      display: flex;
+      align-items: center;
+      background-color:#e9e3e3 ;
+      font-size: (14 / @rootSize);
+      color: #343434;
+      padding: (20 / @rootSize);
+      border-radius: (30 / @rootSize);
+      margin-bottom: (15 / @rootSize);
+      h3{
+        margin-right:(18 / @rootSize) ;
+      }
+      &.active{
+        border: 1px solid #a1defc;
+        background-color: #e4f3ff;
+      }
+    }
+  }
+  // 按钮
+  .bottom{
+    display: flex;
+    justify-content: space-around;
+    button{
+      width: (135 / @rootSize);
+      height: (60 / @rootSize);
+      font-size: (14 / @rootSize);
+      color: #6e6e6f;
+      border: none;
+      border-radius: (30 / @rootSize);
+
+      &.active{
+        background-color:#53c1fe ;
+        color: #ffffff;
+      }
+      &.hide{
+        display: none;
+      }
+    }
+  }
+  
+}
+
+// 底部提示
+footer{
+  text-align: center;
+  margin-bottom: (40 / @rootSize);
+  p{
+    font-size: (14 / @rootSize);
+    color: #afbeea;
+  }
+}

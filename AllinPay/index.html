@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小浦反诈答题活动</title>
+  <link rel="stylesheet" href="./lib/iconfont/iconfont.css">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <!-- 主体内容 -->
+  <div class="main">
+    <!-- 顶部文字 -->
+    <div class="top">
+      <h4>问题&nbsp;<span>1</span></h4>
+      <p>/6</p>
+    </div>
+    <!-- 进度条 -->
+    <progress value="10" max="60"></progress>
+    <!-- 问题 -->
+    <div class="question">
+      <div class="label">单选</div>
+      <h3>以下哪类贷款是正规贷款?</h3>
+    </div>
+    <!-- 答案 -->
+    <div class="answer">
+      <ul>
+        <li data-name="A">
+          <h3>A</h3>
+          <p>校园贷，仅凭学生证+身份证即可贷款，宣传月息0.99%</p>
+        </li>
+        <li data-name="B">
+          <h3>B</h3>
+          <p>浦银点贷，一/三年期贷款，利率3.69% </p>
+        </li>
+        <li data-name="C">
+          <h3>C</h3>
+          <p>XX行网E贷，需下载专业贷款APP，上传身份证即可申请贷款，不查征信，秒到账</p>
+        </li>
+        <li data-name="D">
+          <h3>D</h3>
+          <p>花呗信用贷，仅凭花呗信用级别即可申请贷款</p>
+        </li>
+      </ul>
+    </div>
+    <!-- 按钮 -->
+    <div class="bottom">
+      <button class="prev hide">上一题</button>
+      <button class="next ">下一题</button>
+      <button class="submit hide">提交</button>
+    </div>
+  </div>
+  <!-- 底部 -->
+  <footer>
+    <p>全部答对才可以领取福利哦~</p>
+  </footer>
+  <!-- 移动适配 -->
+  <script src="./js/flexible.js"></script>
+  <!-- 按钮功能实现 -->
+  <script>
+    // 问题数据
+    const Data = [
+      {
+        title: '以下哪类贷款是正规贷款?',
+        answerA: '校园贷，仅凭学生证+身份证即可贷款，宣传月息0.99%',
+        answerB: '浦银点贷，一/三年期贷款，利率3.69% ',
+        answerC: 'XX行网E贷，需下载“专业贷款APP"，上传身份证即可申请贷款，不查征信，秒到账',
+        answerD: '花呗信用贷，仅凭花呗信用级别即可申请贷款'
+      },
+      {
+        title: '如果有陌生人加您微信好友，您会怎么办?',
+        answerA: '都加为好友。',
+        answerB: '所有的陌生人一律不加。',
+        answerC: '问清是谁再加为核证:是否加好友。',
+        answerD: '主动加并说出自己的姓名、电话号码帮助对方回忆。'
+      },
+      {
+        title: '接到陌生电话，对方让您猜猜我是谁,您会怎么办?',
+        answerA: '自我回忆猜测并相信对方是好人。',
+        answerB: '挂断。',
+        answerC: '相信。',
+        answerD: '自报姓名帮助对方回忆。'
+      },
+      {
+        title: '您的手机设置哪一种手机密码锁屏更为安全?',
+        answerA: '太麻烦了，没有设置。',
+        answerB: '设置六个1数字为密码。',
+        answerC: '设置图形或无规律数字为密码。',
+        answerD: '设置六个8。'
+      },
+      {
+        title: '公司职工应时刻注重保护自己个人信息，以下选项中符合要求的是?',
+        answerA: '同情心泛滥，对陌生人无防备。',
+        answerB: '不随意透露个人和公开个人信息。',
+        answerC: '网上隐私公开。',
+        answerD: '电脑上银行帐户、个人信息未有效删除。'
+      },
+      {
+        title: '收到手机短信:代办大额度信用卡，透支金额5万元起。有需要的请联系王经理1***。你应该办?',
+        answerA: '打电话去问问，手续费贵也办。',
+        answerB: '急着用钱诶，不管了，我要办一张。',
+        answerC: '涉嫌诈骗行为，不理。',
+        answerD: '将自己的隐私信息全部给对方。'
+      }
+    ]
+
+    // 用户答案
+    let userAnswer = [0, 0, 0, 0, 0, 0]
+    const next = document.querySelector('.next')
+    const prev = document.querySelector('.prev')
+    const submit = document.querySelector('.submit')
+    const answer = document.querySelector('.answer')
+    const progress = document.querySelector('progress')
+
+    // 选择选项状态变化
+    answer.addEventListener('touchstart', function (e) {
+      if (e.target.nodeName === 'LI') {
+        const old = document.querySelector('.answer li.active')
+        if (old) {
+          old.classList.remove('active')
+        }
+        e.target.classList.add('active')
+      }
+      if (e.target.nodeName === 'P' || e.target.nodeName === 'H3') {
+        const old = document.querySelector('.answer li.active')
+        if (old) {
+          old.classList.remove('active')
+        }
+        e.target.parentElement.classList.add('active');
+      }
+    })
+
+    // 下一题
+    let i = 0
+    next.addEventListener('touchstart', function () {
+      getAnswer()
+      if (userAnswer[i] === 0) {
+        alert('选择后才可以进入下一题')
+      }
+      else {
+        i++
+        clearAnswer()
+        if (i >= Data.length - 1) {
+          next.classList.add('hide')
+          submit.classList.remove('hide')
+        }
+        prevHide = document.querySelector('.prev.hide')
+        if (prevHide) {
+          prevHide.classList.remove('hide')
+        }
+        this.classList.add('active')
+        toggle()
+        progress.value += 10
+      }
+    })
+
+    next.addEventListener('touchend', function () {
+      next.classList.remove('active')
+    })
+
+
+    // 上一题
+    prev.addEventListener('touchstart', function (e) {
+      getAnswer()
+      i--
+      clearAnswer()
+      this.classList.add('active')
+      // 下一题显现
+      nextHide = document.querySelector('.next.hide')
+      if (nextHide) {
+        nextHide.classList.remove('hide')
+      }
+      // 提交按钮消失
+      submit.classList.add('hide')
+      if (i === 0) {
+        this.classList.add('hide')
+      }
+      else {
+        this.classList.remove('hide')
+      }
+      toggle()
+      progress.value -= 10
+    })
+
+    prev.addEventListener('touchend', function () {
+      prev.classList.remove('active')
+    })
+    submit.addEventListener('touchstart', function (e) {
+      getAnswer()
+      if (userAnswer[i] === 0) {
+        alert('选择后才可以进入下一题')
+      }
+      else{
+        localStorage.setItem('answer',JSON.stringify(userAnswer))
+        window.location.href='outcome.html'
+      }
+    })
+
+    // 题目内容的渲染
+    function toggle() {
+      const num = document.querySelector('.top span')
+      num.innerHTML = i + 1
+      const question = document.querySelector('.question h3')
+      question.innerHTML = Data[i].title
+      const A = document.querySelector('.answer li:nth-child(1) p')
+      const B = document.querySelector('.answer li:nth-child(2) p')
+      const C = document.querySelector('.answer li:nth-child(3) p')
+      const D = document.querySelector('.answer li:nth-child(4) p')
+      A.innerHTML = Data[i].answerA
+      B.innerHTML = Data[i].answerB
+      C.innerHTML = Data[i].answerC
+      D.innerHTML = Data[i].answerD
+    }
+
+    // 获取用户答案
+    function getAnswer() {
+      const uAnswer = document.querySelector('.answer li.active h3')
+      if (uAnswer) {
+        userAnswer[i] = uAnswer.innerHTML
+      }
+      else userAnswer[i] = 0
+    }
+
+    // 显示答案状态
+    function clearAnswer() {
+      // 先清除再添加   
+      const old = document.querySelector('.answer li.active')
+      if (old) {
+        old.classList.remove('active')
+      }
+      if (userAnswer[i] != 0) {
+        document.querySelector(`[data-name=${userAnswer[i]}]`).classList.add('active')
+      }
+    }
+  </script>
+</body>
+
+</html>

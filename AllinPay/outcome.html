@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小浦反诈答题活动</title>
+  <link rel="stylesheet" href="./lib/iconfont/iconfont.css">
+  <link rel="stylesheet" href="./css/outcome.css">
+</head>
+
+<body>
+  <!-- 头部用户区 -->
+  <div class="rule">
+    <a href="#">活动规则</a>
+  </div>
+  <div class="user">
+    <img src="./uploads/user_1.png" alt="">
+    <p class="userName">昵称昵称</p>
+  </div>
+  <!-- 答题结果区 -->
+  <div class="result">
+    <h3>答题成功</h1>
+      <p>恭喜获得优惠券，可至微信卡包查看</p>
+      <div class="show">
+        <div class="correct">
+          <h4><span>6</span>/6</h4>
+          <p>答对</p>
+        </div>
+        <p>|</p>
+        <div class="wrong">
+          <h4>0</h4>
+          <p>答错</p>
+        </div>
+        <p>|</p>
+        <div class="accuracy">
+          <h4><span>100</span>%</h4>
+          <p>正确率</p>
+        </div>
+      </div>
+      <a href="#">查看答案解析</a>
+  </div>
+  <!-- 分享区 -->
+  <div class="share">
+    <!-- 申请 -->
+    <div class="appointment">
+      <a href="#">还没有浦发储蓄卡？去预约申请</a>
+      <i class="iconfont icon-jiantouyou"></i>
+    </div>
+    <!-- 优惠券 -->
+    <div class="coupon"></div>
+    <hr style="border:1px dashed #a4a6a8" />
+    <h4>分享微信好友助力(<span>2</span>/9)</h5>
+      <p>每次好友答对全部题目，你将到账<span>5元</span>优惠券，最高50元</p>
+      <div class="friend">
+        <ul>
+          <li>
+            <img src="./uploads/user_2.png" alt="">
+          </li>
+          <li>
+            <img src="./uploads/user_3.png" alt="">
+          </li>
+          <li>
+            <img src="./uploads/user_0.png" alt="">
+          </li>
+          <li>
+            <img src="./uploads/user_0.png" alt="">
+          </li>
+          <li>
+            <img src="./uploads/user_0.png" alt="">
+          </li>
+          <li>
+            <img src="./uploads/user_0.png" alt="">
+          </li>
+          <li>
+            <img src="./uploads/user_0.png" alt="">
+          </li>
+          <li>
+            <img src="./uploads/user_0.png" alt="">
+          </li>
+          <li>
+            <img src="./uploads/user_0.png" alt="">
+          </li>
+        </ul>
+      </div>
+      <button>分享好友助力·获优惠券</button>
+  </div>
+  <!-- 底部 -->
+  <div class="nav">
+    <div>
+      <div class="box"><i class="iconfont icon-haoyoutuijie"></i></div>
+      <p>好友助力</p>
+    </div>
+    <i class="iconfont icon-sanjiaoright"></i>
+    <div>
+      <div class="box"><i class="iconfont icon-jiandati"></i></div>
+      <p>答题成功</p>
+    </div>
+    <i class="iconfont icon-sanjiaoright"></i>
+    <div>
+      <div class="box"><i class="iconfont icon-qiandai"></i></div>
+      <p>优惠券到账</p>
+    </div>
+  </div>
+  <script src="./js/flexible.js"></script>
+  <script>
+    const answerRight = ['B', 'C', 'B', 'C', 'B', 'C']
+    const answer =JSON.parse(localStorage.getItem('answer')) 
+    let right = 0
+    for (let i = 0; i < answer.length; i++) {
+      if (answer[i] === answerRight[i]) {
+        right += 1
+      }
+    }
+    const correct=document.querySelector('.correct span')
+    correct.innerHTML=right
+    const wrong=document.querySelector('.wrong h4')
+    wrong.innerHTML=6-right
+    const accuracy=document.querySelector('.accuracy span')
+    accuracy.innerHTML=parseInt(right/6*100)
+  </script>
+</body>
+
+</html>

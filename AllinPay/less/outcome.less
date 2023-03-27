@@ -1,0 +1,222 @@
+//out:../css/
+@import './base';
+@import './normalize';
+
+@rootSize:37.5rem;
+
+body{
+  background-color: #273fa1;
+  padding: 0 (20 / @rootSize);
+}
+// 规则
+.rule{
+  margin-top: (20 / @rootSize);
+  position: relative;
+  a{
+    position: absolute;
+    right: 0;
+    font-size: (12 / @rootSize);
+    color: #808ebd;
+    text-decoration:underline;
+    
+  }
+}
+
+// 用户信息
+.user{
+  padding-top: (12 / @rootSize);
+  text-align:center;  
+  img{
+    display: block;
+    margin: 0 auto;   
+    width: (60 / @rootSize);
+    height: (60 / @rootSize);
+    border-radius: 100%;
+  }
+  p{
+    margin: 0 auto;
+    padding: (5 / @rootSize) (8 / @rootSize);
+    width: (80 / @rootSize);
+    font-size: (14 / @rootSize);
+    color: #f1f2f7;
+    background-color: #213580;
+    border-radius: (20 / @rootSize);
+  }
+}
+
+// 答题结果区
+.result{
+  margin-top: (24 / @rootSize);
+  width: (305 / @rootSize);
+  background-color: #e4f3ff;
+  padding: (25 / @rootSize) (14 / @rootSize);
+  border-radius: (15 / @rootSize);
+  border: 1px solid #95d5fc;
+  text-align: center;
+  h3{
+    font-size: (30 / @rootSize);
+    margin-bottom: (10 / @rootSize);
+  }
+  
+  p{
+    font-size: (16 / @rootSize);
+    color: #a4a6a8;
+    margin-bottom: (20 / @rootSize);
+  }
+  .show{
+    display: flex;
+    align-items: center;
+    height: (80 / @rootSize);
+    background-color: #f4fbff;
+    border-radius: (10 / @rootSize);
+    margin-bottom: (20 / @rootSize);
+    box-shadow: 0px 2px 3px 0px 
+		rgba(118, 118, 118, 0.2);
+    
+    h4{
+      margin-top: (15 / @rootSize);
+      margin-bottom: (10 / @rootSize);
+      font-size: (24/ @rootSize);
+    }
+     
+    p{
+      margin-top: (10 / @rootSize);
+      font-size: (20 / @rootSize);
+      color: #a4a6a8;
+    }
+    div{
+      width: 30%;
+      p{
+        font-size: (12 / @rootSize);
+        color: #a4a6a8;
+      }
+    }  
+  }
+  a{
+    font-size: (16 / @rootSize);
+    color: #6698f7;
+    text-decoration:underline;
+  }
+}
+
+// 分享区
+.share{
+  margin-top: (10 / @rootSize);
+  width: (305 / @rootSize);
+  background-color: #e4f3ff;
+  padding: (15 / @rootSize) (14 / @rootSize);
+  border-radius: (15 / @rootSize);
+  border: 1px solid #95d5fc;
+  text-align: center;
+  // 申请
+  .appointment{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #f1a98b;
+    border-radius: (30 / @rootSize);
+    font-size: (14 / @rootSize);
+    background-color: #fdf5f0;
+    padding: (8 / @rootSize) (20 / @rootSize);
+    a{
+      border-bottom: 1px solid #f1a98b;
+      color: #f1a98b;  
+    }
+    i{
+      color: #f1a98b;  
+    }
+
+  }
+  // 优惠券
+  .coupon{
+    margin: (15 / @rootSize) 0;
+    background-image: url('../uploads/coupon.png');
+    background-size: 100% 100%;
+    width: (305 / @rootSize);
+    height: (95 / @rootSize);
+    border-radius: (15 / @rootSize);
+  }
+  h4{
+    font-size: (16 / @rootSize);
+    span{
+      color: #3977f4;
+    }
+  }
+  p{
+    font-size: (12 / @rootSize);
+    color:#a4a6a8 ;
+    span{
+      color: #eaa78e;
+    }
+  }
+  // 好友信息
+  .friend{
+    margin: (15 / @rootSize) 0;
+    white-space: nowrap;/*文本不会换行，文本会在在同一行上继续*/
+    overflow-y:auto;/*可滑动*/
+    // 隐藏滑动条
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    li{
+      display: inline-block;/*行内块元素*/
+      left: 0;
+      top: 0;
+      margin-right: (15 / @rootSize);
+    }
+    img{
+      width:(45 / @rootSize) ;
+      height: (45 / @rootSize);
+      border-radius: (15 / @rootSize);
+    }
+  }
+  // 分享按钮
+  button{
+    border-style: none;
+    width:(255 / @rootSize) ;
+    height: (54 / @rootSize);
+    font-size: (18 / @rootSize);
+    color: #ffffff;
+    background-color: #65ce5f;
+    border-radius: (40 / @rootSize);
+  }
+}
+
+// 底部
+.nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: (10 / @rootSize);
+  margin-bottom: (20 / @rootSize);
+  width: (305 / @rootSize);
+  background-color: #e4f3ff;
+  padding: (15 / @rootSize) (14 / @rootSize);
+  border-radius: (15 / @rootSize);
+  border: 1px solid #95d5fc;
+  i{
+    margin-bottom: (25 / @rootSize);
+    font-size: (20 / @rootSize);
+    color: #ffffff;
+  }
+  .box{
+    margin: 0 auto; 
+    width: (50 / @rootSize);
+    height: (50 / @rootSize);
+    border: (5 / @rootSize) solid #d9e0e6;
+    border-radius: 100%;
+    text-align: center;
+    line-height: (50 / @rootSize);
+    i{
+      font-size: (35 / @rootSize);
+      color: #2e84ff;
+    }
+  }
+  div{
+    text-align: center;
+    width: 30%;
+  }
+  p{
+    margin-top: (10 / @rootSize);
+    font-size: (16 / @rootSize);
+  }
+}
